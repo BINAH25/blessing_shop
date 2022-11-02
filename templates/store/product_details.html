@@ -105,6 +105,7 @@
         <div class="box-container" style="margin-top: 10px;">
             {% for product in similiar_product %}
             <div class="box">
+                <a href="#" class="fas fa-heart"></a>
                 <a href="#" class="fas fa-eye"></a>
                 <img src="{{ product.image.url}}" alt="">
                 <a href="{% url 'store:product_detail' product.id %}">
