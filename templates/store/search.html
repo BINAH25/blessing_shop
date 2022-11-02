@@ -1,0 +1,33 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+<section class="dishes" id="dishes" style="margin-top: 50px;">
+    <h1 class="heading"> <span> Search Result(s) for {{request.POST.keyword}} </span> </h1>
+    <div class="box-container" style="margin-top: 10px;">
+        {% if result %}
+        {% for result in result %}
+        <div class="box">
+            <a href="#" class="fas fa-eye"></a>
+            <img src="{{ result.image.url}}" alt="">
+            <a href="{% url 'store:product_detail' result.id %}">
+                <h3>{{result.name}}</h3>
+            </a>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <span>GH${{result.price}}</span>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div>
+            <p style="font-size: 2rem;"> Sorry, no result(s) found for {{request.POST.keyword}} </p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}

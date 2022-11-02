@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/sign-up.css'%}" />
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href=""><img class="logo" src="" alt="" /></a>
+        </div>
+        <div class="header-action">
+            <a class="btn-login btn" href="{% url 'user:do_login' %}">Login</a>
+        </div>
+    </header>
+    <main>
+        <section class="main-container">
+            <div class="form-container">
+                <h2>Create an account</h2>
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    <p style="color: red;">{{message}}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                <form action="" method="post" class="reg-form">
+                    {% csrf_token %}
+                    <div class="form-control validate">
+                        <label for="name">Username</label>
+                        <input type="text" placeholder="John" name="username" id="name" />
+                        <img src="" alt="error icon" class="error-icon" />
+                        <small>Enter Username</small>
+                    </div>
+                    <div class="form-control validate">
+                        <label for="email">Email Address</label>
+                        <input type="email" name="email" required placeholder="example@gmail.com" id="email" />
+                    </div>
+                    <div class="form-control validate">
+                        <label for="">Password</label>
+                        <input type="password" name="password" required placeholder="Enter atleast 8 characters"
+                            id="password" />
+                        <img class="" id="toggle-password" src="{% static 'image/remove_red_eye.png'%}"
+                            alt="show password icon" />
+                    </div>
+                    <div class="form-control">
+                        <input type="checkbox" name="agree" id="agree" required />
+                        <small>I agree to the <a>Terms of Service</a> and
+                            <a>Privacy Policy</a></small>
+                    </div>
+                    <button class="btn" type="submit">Create an Account</button>
+                </form>
+            </div>
+            <div class="illustration-container">
+                <div class="slides fade">
+                    <img src="{% static 'image/Retail markdown-amico.svg'%}" alt="" />
+                    <h2>Shopping Made easy</h2>
+                </div>
+                <div class="slides fade">
+                    <img src="{% static 'image/Online wishes list-pana.svg'%}" alt="" />
+                    <h2>Shopping Made easy</h2>
+                </div>
+                <div class="slides fade">
+                    <img src="{% static 'image/Shopping-pana.svg'%}" alt="" />
+                    <h2>Shopping Made easy</h2>
+                </div>
+                <div class="slide-nav">
+                    <button class="sliders-btn-left" onclick="plusSlides(-1)">
+                        <img class="arrow" src="" alt="" />
+                    </button>
+                    <div class="dots">
+                        <span class="dot active" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+                    <button class="sliders-btn-right" onclick="plusSlides(1)">
+                        <img class="arrow" src="" alt="" />
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- <script src="login-modal.js"></script> -->
+    <script src="{% static 'js/sign-up.js'%}"></script>
+</body>
+
+</html>

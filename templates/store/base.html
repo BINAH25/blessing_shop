@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry - Palace</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+</head>
+
+<body>
+
+    <!-- header section starts  -->
+
+    <header class="header">
+
+        <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> JewelryPalace </a>
+
+        <nav class="navbar">
+            <a class="active" href="{% url 'store:home'%}">home</a>
+            <a href="#category">categories</a>
+            <a href="#review">review</a>
+            <a href="#blogs">blogs</a>
+        </nav>
+
+        <div class="icons">
+            <div class="fas fa-bars" id="menu-btn"></div>
+            <div class="fas fa-search" id="search-btn"></div>
+            <div class="fas fa-shopping-cart" id="cart-btn"></div>
+            <div class="fas fa-user" id="login-btn"></div>
+        </div>
+
+        <form action="{% url 'store:search' %}" class="search-form" method="post">
+            {% csrf_token %}
+            <input type="search" id="search-box" name="keyword" placeholder="search here...">
+            <button type="submit" class="fas fa-search"> </button>
+        </form>
+
+
+        <form action="{% url 'store:second_login' %}" class="login-form" method="post">
+            {% csrf_token %}
+            <h3>login now</h3>
+            <input type="email" name="email" placeholder="your email" class="box">
+            <input type="password" name="password" placeholder="your password" class="box">
+            <p>forget your password <a href="#">click here</a></p>
+            <p>don't have an account <a href="{% url 'user:register' %}">create now</a></p>
+            <input type="submit" value="login now" class="btn">
+        </form>
+
+    </header>
+    {% block content %}
+
+
+    {% endblock content %}
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3> JewelryPalace <i class="fas fa-shopping-basket"></i> </h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, saepe.</p>
+                <div class="share">
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-whatsapp"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+                <a href="#" class="links"> <i class="fas fa-envelope"></i> blessing@gmail.com </a>
+                <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> Accra - Ghana </a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> home </a>
+                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> categories </a>
+                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> review </a>
+                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
+            </div>
+
+            <div class="box">
+                <h3>newsletter</h3>
+                <p>subscribe for latest updates</p>
+                <input type="email" placeholder="your email" class="email">
+                <input type="submit" value="subscribe" class="btn">
+            </div>
+
+        </div>
+
+        <div class="credit"> created by <span> Codex Technologies </span> | all rights reserved </div>
+
+    </section>
+
+    <!-- footer section ends -->
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <!-- jquery cdn link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="{% static 'js/script.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+
+</body>
+
+</html>
