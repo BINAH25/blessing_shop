@@ -24,10 +24,10 @@ def register(request):
             user=CustomUser.objects.create_user(username=username,password=password,email=email,user_type=2)
             user.save()
             messages.success(request,"Account Created Successfully")
-            return redirect('user:do_login')
+            return redirect('do_login')
         except:
             messages.error(request,"Registration Failed ")
-            return redirect('user:register')
+            return redirect('register')
 
     return render(request,'user/register.html')
 
@@ -47,7 +47,7 @@ def do_login(request):
                 messages.error(request,"Invalid Login Details")
         else:
             messages.error(request,"Invalid Login Details")
-            return redirect("user:do_login")
+            return redirect("do_login")
 
     return render(request, 'user/login.html')
 

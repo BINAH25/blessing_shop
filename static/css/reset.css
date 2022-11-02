@@ -5,6 +5,8 @@
   --color-main: #301e4e;
   --color-btn: #ff6e6c;
   --fz-heading: 40px;
+  --black: #130f40;
+
 }
 
 * {
@@ -26,7 +28,7 @@ button {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #b9e8b6;
+  background-color: var(--black);
 
   /* background: linear-gradient(#ff6e6c 21%, #52436b 100%); */
 }

@@ -28,14 +28,14 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="Enter your password" required />
             <img class="" id="toggle-password" src="{% static 'image/remove_red_eye.png'%}" alt="show password icon" />
-            <small><a href="" class="redirect">Forgot Password?</a></small>
+            <small><a href="{% url 'password_reset' %}" class="redirect">Forgot Password?</a></small>
           </div>
           <div class="form-action">
             <button style="cursor: pointer;" type="submit">Login</button>
           </div>
         </form>
         <small>Don't have an account?
-          <a href="{% url 'user:register' %}" class="redirect">Sign up</a></small>
+          <a href="{% url 'register' %}" class="redirect">Sign up</a></small>
       </div>
     </section>
   </main>
