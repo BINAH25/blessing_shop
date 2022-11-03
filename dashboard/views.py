@@ -54,7 +54,7 @@ def add_product(request):
     return render(request, 'dashboard/add_product.html',context)
 
 def all_product(request):
-    products = Product.objects.all()
+    products = Product.objects.all().order_by('-id')
     categories = Category.objects.all()
 
     context = {

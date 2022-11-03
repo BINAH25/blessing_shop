@@ -24,7 +24,8 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="{% url 'dashboard:dashboard_home'%}" class="nav-link">
+          {% url 'dashboard:dashboard_home' as admin_home %}
+          <a href="{{admin_home}}" class="nav-link {% if request.path == admin_home %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Home
@@ -33,7 +34,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="{% url 'dashboard:add_category'%}" class="nav-link">
+        {% url 'dashboard:add_category' as add_category %}
+          <a href="{{add_category}}" class="nav-link {% if request.path == add_category %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Add Category
@@ -42,7 +44,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="{% url 'dashboard:add_product'%}" class="nav-link">
+        {% url 'dashboard:add_product' as add_product %}
+          <a href="{{add_product}}" class="nav-link {% if request.path == add_product %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Add Product
@@ -50,7 +53,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{% url 'dashboard:all_product'%}" class="nav-link">
+        {% url 'dashboard:all_product' as all_product %}
+          <a href="{{all_product}}" class="nav-link {% if request.path == all_product %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Edit Product
