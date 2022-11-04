@@ -69,3 +69,17 @@ def second_login(request):
             messages.error(request,"Invalid Login Details")
             return redirect("user:do_login")
 
+
+@login_required(login_url="do_login")   
+def cart(request):
+    customer = Customer.objects.get(admin=request.user)
+    cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+    cartitems = cart.cartitems_set.all()
+    context = {
+        'cart': cart,
+        'cartitems': cartitems
+    }
+    return render(request, 'store/cart.html', context)
+
+def update_cart(request):
+    return JsonResponse('it is working', safe=False)

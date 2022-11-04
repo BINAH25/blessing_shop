@@ -3,58 +3,37 @@
 <!--divinectorweb.com-->
 
 <head>
+	{% load static %}
 	<meta charset="UTF-8">
-	<title>Responsive Shopping Cart design</title>
+	<title>Cart</title>
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
 		type="text/css">
-	<link href="cart.css" rel="stylesheet">
+	<link href="{% static 'css/cart.css'%}" rel="stylesheet">
 </head>
 
 <body>
 	<div class="wrapper">
 		<h1> Cart </h1>
-		<a href="">Continue Shopping</a>
+		<a href="{% url 'store:home' %}">Continue Shopping</a>
 		<div class="project">
 			<div class="shop">
+				{% for item in cartitems %}
 				<div class="box">
-					<img src="1.jpg">
+					<img src="{{item.product.image.url}}">
 					<div class="content">
-						<h3>Women Lipsticks</h3>
-						<h4>Price: $40</h4>
+						<h3>{{item.product.name}}</h3>
+						<h4>Price: ${{item.product.price}}</h4>
 						<p class="unit">Quantity: <input name="" value="2"></p>
 						<div class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span
 								class="btn2">Remove</span></div>
 					</div>
 				</div>
-				<div class="box">
-					<img src="2.jpg">
-					<div class="content">
-						<h3>Man's Watches</h3>
-						<h4>Price: $40</h4>
-						<p class="unit">Quantity: <input name="" value="1"></p>
-						<p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span
-								class="btn2">Remove</span></p>
-					</div>
-				</div>
-				<div class="box">
-					<img src="3.jpg">
-					<div class="content">
-						<h3>Samsung Mobile</h3>
-						<h4>Price: $250</h4>
-						<p class="unit">Quantity: <input name="" value="0"></p>
-						<p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span
-								class="btn2">Remove</span></p>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 			<div class="right-bar">
 				<p><span>Subtotal</span> <span>$120</span></p>
 				<hr>
-				<p><span>Tax (5%)</span> <span>$6</span></p>
-				<hr>
-				<p><span>Shipping</span> <span>$15</span></p>
-				<hr>
-				<p><span>Total</span> <span>$141</span></p><a href="#"><i class="fa fa-shopping-cart"></i>Checkout</a>
+				<p><span>Total</span> <span>GH${{cart.cart_total}}</span></p><a href="#"><i class="fa fa-shopping-cart"></i>Checkout</a>
 			</div>
 		</div>
 	</div>

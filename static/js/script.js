@@ -34,12 +34,6 @@ document.querySelector("#menu-btn").onclick = () => {
   loginForm.classList.remove("active");
 };
 
-window.onscroll = () => {
-  searchForm.classList.remove("active");
-  shoppingCart.classList.remove("active");
-  loginForm.classList.remove("active");
-  navbar.classList.remove("active");
-};
 
 var swiper = new Swiper(".home-slider", {
   spaceBetween: 30,
@@ -79,12 +73,3 @@ var swiper = new Swiper(".review-slider", {
   },
 });
 
-function loader() {
-  document.querySelector(".loader-container").classList.add("fade-out");
-}
-
-function fadeOut() {
-  setInterval(loader, 3000);
-}
-
-window.onload = fadeOut;
