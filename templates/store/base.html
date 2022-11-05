@@ -41,7 +41,6 @@
             <div class="fas fa-user" id="login-btn"></div>
             {% if request.user.is_authenticated %}
             <a href="{% url 'logout_user'%}"><div class="fas fa-sign-out-alt" id="login-btn"></div></a>
-            <div class="fas fa-bars" id="menu-btn"></div>
             {% endif %}
         </div>
 

@@ -42,7 +42,18 @@
         </li>
       </ul>
       <h4 style="margin-left: 10px; margin-top: 5px">
-        ADMIN DASHBOARD
+        {% if greeting == 'Good Afternoon!'%}
+        <span class="text-success text-center mr-2 ml-5">{{greeting}}</span>
+        <span>{{user.username}} and Welcome to your Dashboard</span>
+        {% endif %}
+        {% if greeting == 'Good Morning!'%}
+        <span class="text-primary text-center mr-2 ml-5">{{greeting}}</span>
+        <span>{{user.username}} and Welcome to your Dashboard</span>
+        {% endif %}
+        {% if greeting == 'Good Evening!'%}
+        <span class="text-info text-center mr-2 ml-5">{{greeting}}</span>
+        <span>{{user.username}} and Welcome to your Dashboard</span>
+        {% endif %}
       </h4>
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->

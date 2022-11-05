@@ -9,11 +9,16 @@ import json
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-
+import time
 # Create your views here.
 
 def dashboard_home(request):
-    return render(request, 'dashboard/home.html')
+    time_in_hrs = int(time.strftime("%H"))
+    greeting = "Good Morning!" if 0 < time_in_hrs < 12 else "Good Afternoon!" if 12 <= time_in_hrs < 18 else "Good Evening!"
+    context = {
+        'greeting': greeting
+    }
+    return render(request, 'dashboard/home.html', context)
 
 
 def add_category(request):
