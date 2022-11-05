@@ -13,7 +13,8 @@
 
 <body>
 	<div class="wrapper">
-		<h1> Cart </h1>
+		<h1> My Cart </h1>
+		<hr>
 		<a href="{% url 'store:home' %}">Continue Shopping</a>
 		<div class="project">
 			<div class="shop">
@@ -22,8 +23,9 @@
 					<img src="{{item.product.image.url}}">
 					<div class="content">
 						<h3>{{item.product.name}}</h3>
-						<h4>Price: ${{item.product.price}}</h4>
-						<p class="unit">Quantity: <input name="" value="2"></p>
+						<h4>Price: GH${{item.product.price}}</h4>
+						<h5><strong>SubTotal: GH${{item.subTotal}}</strong></h5>
+						<p class="unit">Quantity: <input type="number" value = "{{item.quantity}}" style = 'width: 50px; padding-left: 5px'></p>
 						<div class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span
 								class="btn2">Remove</span></div>
 					</div>
@@ -31,9 +33,11 @@
 				{% endfor %}
 			</div>
 			<div class="right-bar">
-				<p><span>Subtotal</span> <span>$120</span></p>
+				<p><span> Item(s)</span> <span><strong>{{cart.num_of_items}}</strong></span></p>
 				<hr>
-				<p><span>Total</span> <span>GH${{cart.cart_total}}</span></p><a href="#"><i class="fa fa-shopping-cart"></i>Checkout</a>
+				<p><span>Total</span> <span><strong>GH${{cart.cart_total|floatformat:2}}</strong></span></p>
+				<hr>
+				<a href="#"><i class="fa fa-shopping-cart"></i>Checkout</a>
 			</div>
 		</div>
 	</div>
