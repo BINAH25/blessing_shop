@@ -36,13 +36,14 @@
         <div class="icons">
             <div class="fas fa-bars" id="menu-btn"></div>
             <div class="fas fa-search" id="search-btn"></div>
-            <div class="fas fa-shopping-cart" id="cart-btn"></div>
+            <a href="{% url 'store:cart'%}"> <div class="fas fa-shopping-cart" id="cart-btn"><span id="cart">{{cart.num_of_items}}</span></div></a>
             <div class="fas fa-user" id="login-btn"></div>
         </div>
 
-        <form action="" class="search-form">
-            <input type="search" id="search-box" placeholder="search here...">
-            <label for="search-box" class="fas fa-search"></label>
+        <form action="{% url 'store:search' %}" class="search-form" method="post">
+            {% csrf_token %}
+            <input type="search" id="search-box" name="keyword" placeholder="search here...">
+            <button type="submit" class="fas fa-search"> </button>
         </form>
 
 
@@ -83,7 +84,7 @@
                         <span>GH${{product.price}}</span>
                         <h3>{{product.name}}</h3>
                         <p>{{product.description}}</p>
-                        <a href="#" class="btn">add to cart</a>
+                        <a  class="btn addtocart" data-action ="add" data-product="{{product.id}}">add to cart</a>
                     </div>
                 </div>
 
@@ -119,7 +120,7 @@
                     <i class="fas fa-star-half-alt"></i>
                 </div>
                 <span>GH${{product.price}}</span>
-                <a href="#" class="btn">add to cart</a>
+            <a  class="btn addtocart" data-action ="add" data-product="{{product.id}}">add to cart</a>
             </div>
             {% endfor %}
 
@@ -176,6 +177,29 @@
 
 
 
+     <script> 
+
+      let user = "{{request.user}}"
+     
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+    </script>
+
 
 
 
@@ -184,8 +208,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- custom js file link  -->
-    <script src="js/product_details.js"></script>
-
+    <script src="{% static 'js/product_details.js'%}"></script>
+    <script src="{% static 'js/cart.js'%}"></script>
 </body>
 
 </html>

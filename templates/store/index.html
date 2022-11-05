@@ -13,7 +13,7 @@
                     <h3>{{product.name}}</h3>
                     <span>GH${{product.price}}</span>
                     <p>{{product.description}}</p>
-                    <a href="#" class="btn">add to Cart</a>
+                    <a class="btn homecart" data-action ="add" data-product="{{product.id}}">add to Cart</a>
                 </div>
                 <div class="image">
                     <img src="{{product.image.url}}" alt="">
@@ -92,7 +92,7 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>GH${{product.price}}</span>
-            <a href="#" class="btn">add to cart</a>
+            <a  class="btn addtocart" data-action ="add" data-product="{{product.id}}">add to cart</a>
         </div>
         {% endfor %}
 

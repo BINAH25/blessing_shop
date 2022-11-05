@@ -14,11 +14,22 @@ def home(request):
     products = Product.objects.all()
     top_deal = Product.objects.filter(top_deal=True)
     flash_sales = Product.objects.filter(flash_sales=True)
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(admin=request.user)
+        cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+        cartitems = cart.cartitems_set.all()
+    else:
+        cart = []
+        cartitems = []
+        cart = {'num_of_items': 0}
+
     context = {
         'products': products,
         'top_deal': top_deal,
         'flash_sales': flash_sales,
-        'categories': categories
+        'categories': categories,
+        'cart': cart,
+        'cartitems': cartitems
     }
     return render(request, 'store/index.html',context)
 
@@ -26,28 +37,62 @@ def category(request, slug):
     categories = Category.objects.all()
     category = Category.objects.get(slug=slug)
     product = Product.objects.filter(category=category)
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(admin=request.user)
+        cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+        cartitems = cart.cartitems_set.all()
+    else:
+        cart = []
+        cartitems = []
+        cart = {'num_of_items': 0}
+
     context = {
         'product': product,
         'categories': categories,
-        'category': category
+        'category': category,
+        'cart': cart,
+        'cartitems': cartitems
     }
     return render(request, 'store/category.html',context)
 
 def product_detail(request,pk):
     product = Product.objects.get(id=pk)
     similiar_product = Product.objects.filter(category=product.category).exclude(id=product.id)
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(admin=request.user)
+        cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+        cartitems = cart.cartitems_set.all()
+    else:
+        cart = []
+        cartitems = []
+        cart = {'num_of_items': 0}
+
     context = {
         'product': product,
-        'similiar_product': similiar_product
+        'similiar_product': similiar_product,
+        'cart': cart,
+        'cartitems': cartitems
     }
     return render(request, 'store/product_details.html', context)
 
 def search(request):
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(admin=request.user)
+        cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+        cartitems = cart.cartitems_set.all()
+    else:
+        cart = []
+        cartitems = []
+        cart = {'num_of_items': 0}
+
     if request.method == 'POST':
         kw = request.POST['keyword']
         result = Product.objects.filter(Q(name__icontains=kw) | Q(description__icontains=kw))
+        
         context = {
-            'result':result
+            'result':result,
+            'cart': cart,
+            'cartitems': cartitems
         }
     return render(request, 'store/search.html', context)
 
@@ -82,4 +127,23 @@ def cart(request):
     return render(request, 'store/cart.html', context)
 
 def update_cart(request):
-    return JsonResponse('it is working', safe=False)
+    data = json.loads(request.body)
+    product_id = data['product_id']
+    action = data['action']
+    if request.user.is_authenticated:
+        product = Product.objects.get(id=product_id)
+        customer = Customer.objects.get(admin=request.user)
+        cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+        cartitems, created = Cartitems.objects.get_or_create(product=product, cart=cart)
+
+        if action == 'add':
+            cartitems.quantity += 1
+        cartitems.save()
+        
+        msg = {
+            'quantity': cart.num_of_items
+        }
+
+    else:
+        return redirect('do_login')   
+    return JsonResponse(msg,safe=False)

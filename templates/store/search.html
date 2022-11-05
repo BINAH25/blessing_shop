@@ -7,7 +7,8 @@
         {% if result %}
         {% for result in result %}
         <div class="box">
-            <a href="#" class="fas fa-eye"></a>
+            <a  class="fas fa-heart"></a>
+            <a  class="fas fa-eye"></a>
             <img src="{{ result.image.url}}" alt="">
             <a href="{% url 'store:product_detail' result.id %}">
                 <h3>{{result.name}}</h3>
@@ -20,7 +21,7 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>GH${{result.price}}</span>
-            <a href="#" class="btn">add to cart</a>
+            <a  class="btn addtocart" data-action ="add" data-product="{{result.id}}">add to cart</a>
         </div>
         {% endfor %}
         {% else %}

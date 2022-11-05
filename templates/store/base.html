@@ -36,7 +36,7 @@
         <div class="icons">
             <div class="fas fa-bars" id="menu-btn"></div>
             <div class="fas fa-search" id="search-btn"></div>
-           <a href="{% url 'store:cart'%}"> <div class="fas fa-shopping-cart" id="cart-btn"></div></a>
+           <a href="{% url 'store:cart'%}"> <div class="fas fa-shopping-cart" id="cart-btn"><span id="cart">{{cart.num_of_items}}</span></div></a>
             <div class="fas fa-user" id="login-btn"></div>
         </div>
 
@@ -141,8 +141,8 @@
 
     <!-- custom js file link  -->
     <script src="{% static 'js/script.js'%}"></script>
-    <script src="{% static 'js/main.js'%}"></script>
     <script src="{% static 'js/cart.js'%}"></script>
+    <script src="{% static 'js/home_cart.js'%}"></script>
 
 </body>
 
