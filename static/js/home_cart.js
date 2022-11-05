@@ -5,7 +5,7 @@ for(let i = 0; i < homecart.length; i++){
         let product_id = e.target.dataset.product
         let action = e.target.dataset.action
         if(user=='AnonymousUser'){
-            console.log('not log in')
+            alert('you need to login first')
         }
         else{
             HomeCart(product_id,action)

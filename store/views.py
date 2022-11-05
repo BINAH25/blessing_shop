@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.core import serializers
 import json
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -112,7 +113,7 @@ def second_login(request):
                 messages.error(request,"Invalid Login Details")
         else:
             messages.error(request,"Invalid Login Details")
-            return redirect("user:do_login")
+            return redirect("do_login")
 
 
 @login_required(login_url="do_login")   
