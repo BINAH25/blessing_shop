@@ -148,3 +148,23 @@ def update_cart(request):
     else:
         return redirect('do_login')   
     return JsonResponse(msg,safe=False)
+
+def update_quantity(request):
+    data = json.loads(request.body)
+    value = int(data['in_val'])
+    product_id = data['p_id']
+    if request.user.is_authenticated:
+        product = Product.objects.get(id=product_id)
+        customer = Customer.objects.get(admin=request.user)
+        cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+        cartitems, created = Cartitems.objects.get_or_create(product=product, cart=cart)
+        cartitems.quantity = value
+        cartitems.save()
+
+        msg = {
+            'subtotal': cartitems.subTotal,
+            'quantity': cart.num_of_items,
+            'total': cart.cart_total
+        }
+
+    return JsonResponse(msg, safe=False)

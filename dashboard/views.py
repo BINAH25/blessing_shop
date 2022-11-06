@@ -14,7 +14,12 @@ import time
 
 def dashboard_home(request):
     time_in_hrs = int(time.strftime("%H"))
-    greeting = "Good Morning!" if 0 < time_in_hrs < 12 else "Good Afternoon!" if 12 <= time_in_hrs < 18 else "Good Evening!"
+    if 0 < time_in_hrs < 12:
+        greeting = "Good Morning!" 
+    elif 12 <= time_in_hrs < 18:
+        greeting = "Good Afternoon!"
+    else:
+        greeting = "Good Evening!"
     context = {
         'greeting': greeting
     }

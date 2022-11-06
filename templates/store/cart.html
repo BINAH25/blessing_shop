@@ -24,8 +24,8 @@
 					<div class="content">
 						<h3>{{item.product.name}}</h3>
 						<h4>Price: GH${{item.product.price}}</h4>
-						<h5><strong>SubTotal: GH${{item.subTotal}}</strong></h5>
-						<p class="unit">Quantity: <input type="number" value = "{{item.quantity}}" style = 'width: 50px; padding-left: 5px'></p>
+						<h5><strong id="subtotal">SubTotal: GH${{item.subTotal}}</strong></h5>
+						<p class="unit">Quantity: <input type="number" id="num" value = "{{item.quantity}}" data-price = {{item.product.price}} data-product = {{item.product.id}} style = 'width: 50px; padding-left: 5px'></p>
 						<div class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span
 								class="btn2">Remove</span></div>
 					</div>
@@ -33,14 +33,41 @@
 				{% endfor %}
 			</div>
 			<div class="right-bar">
-				<p><span> Item(s)</span> <span><strong>{{cart.num_of_items}}</strong></span></p>
+				<p><span> Item(s)</span> <span><strong id="cart_items">{{cart.num_of_items}}</strong></span></p>
 				<hr>
-				<p><span>Total</span> <span><strong>GH${{cart.cart_total|floatformat:2}}</strong></span></p>
+				<p><span>Total</span> <span><strong id="total">GH${{cart.cart_total|floatformat:2}}</strong></span></p>
 				<hr>
 				<a href="#"><i class="fa fa-shopping-cart"></i>Checkout</a>
 			</div>
 		</div>
 	</div>
+	<script> 
+
+      let user = "{{request.user}}"
+     
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+    </script>
+
+	    <!-- custom js file link  -->
+
+	    <script src="{% static 'js/cart.js'%}"></script>
+
 </body>
 
 </html>
