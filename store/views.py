@@ -168,3 +168,14 @@ def update_quantity(request):
         }
 
     return JsonResponse(msg, safe=False)
+
+def delete_item(request):
+    data = json.loads(request.body)
+    product_id = data['del_id']
+    if request.user.is_authenticated:
+        product = Product.objects.get(id=product_id)
+        customer = Customer.objects.get(admin=request.user)
+        cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+        cartitems = Cartitems.objects.filter(product=product, cart=cart)
+        cartitems.delete()
+    return JsonResponse('it is working',safe=False)

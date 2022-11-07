@@ -50,7 +50,6 @@ if (inputvalue < 2) {
   inputvalue = 1    
 }
 let product_id = e.target.dataset.product
-let p
 const data = {p_id: product_id, in_val: inputvalue};
 let url = '/update_quantity'
 
@@ -75,3 +74,31 @@ body: JSON.stringify(data),
 
 }
 
+let delbtns = document.getElementsByClassName('del')
+for(let i = 0; i < delbtns.length; i++){
+  delbtns[i].addEventListener('click',deleteItem)
+}
+
+function deleteItem(e) {
+  let id = e.target.dataset.product_id
+const data = {del_id: id};
+let url = '/delete_item'
+
+fetch(url, {
+method: 'POST', // or 'PUT'
+headers: {
+  'Content-Type': 'application/json',
+  'X-CSRFToken': csrftoken
+},
+body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+  location.reload()
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+
+}

@@ -26,7 +26,7 @@
 						<h4>Price: GH${{item.product.price}}</h4>
 						<h5><strong id="subtotal">SubTotal: GH${{item.subTotal}}</strong></h5>
 						<p class="unit">Quantity: <input type="number" id="num" value = "{{item.quantity}}" data-price = {{item.product.price}} data-product = {{item.product.id}} style = 'width: 50px; padding-left: 5px'></p>
-						<div class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span
+						<div class="btn-area"><i aria-hidden="true" class="fa fa-trash del" data-product_id ="{{item.product.id}}"></i> <span
 								class="btn2">Remove</span></div>
 					</div>
 				</div>
