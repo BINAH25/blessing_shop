@@ -62,11 +62,13 @@
         </form>
 
     </header>
+    
     {% block content %}
 
 
     {% endblock content %}
 
+    
     <section class="footer">
 
         <div class="box-container">
@@ -147,6 +149,18 @@
     <script src="{% static 'js/script.js'%}"></script>
     <script src="{% static 'js/cart.js'%}"></script>
     <script src="{% static 'js/home_cart.js'%}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                Swal.fire({
+                    "title":"Thank You!",
+                    "text": "{{message}}",
+                    "icon": "success"
+                })
+            </script>
+        {% endfor %}
+    {% endif %}
 
 </body>
 

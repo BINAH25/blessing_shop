@@ -204,4 +204,5 @@ def order(request):
         email = request.POST['email']
         order = Order(ordered_by=ordered_by,location=location,mobile=mobile,email=email,cart=cart,order_status=0,customer=customer)
         order.save()
+        messages.success(request,"Your order(s) have been placed successfully. thanks! ")
         return redirect('store:home')
