@@ -111,10 +111,16 @@ class Cartitems(models.Model):
     
    
 
-class SavedItem(models.Model):
-    owner = models.ForeignKey(Customer, on_delete=models.CASCADE, null = True, blank=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
-    added = models.IntegerField(default=0)
-    
+class Order(models.Model):
+    cart = models.OneToOneField(Cart, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    ordered_by = models.CharField(max_length=200)
+    location = models.CharField(max_length=200)
+    mobile = models.CharField(max_length=10)
+    email = models.EmailField(null=True, blank=True)
+    order_status = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
-        return str(self.id)
+        return "Order: " + str(self.id)
+

@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.core import serializers
 import json
+from .forms import *
 from django.contrib import messages
 
 # Create your views here.
@@ -179,3 +180,28 @@ def delete_item(request):
         cartitems = Cartitems.objects.filter(product=product, cart=cart)
         cartitems.delete()
     return JsonResponse('it is working',safe=False)
+
+def check_out(request):
+    customer = Customer.objects.get(admin=request.user)
+    cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+    cartitems = cart.cartitems_set.all()
+    context = {
+        'cart': cart,
+        'cartitems': cartitems
+    }
+    return render(request, 'store/checkout.html', context)
+
+
+def order(request):
+    customer = Customer.objects.get(admin=request.user)
+    cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
+    cart.completed = True
+    cart.save()
+    if request.method == "POST":
+        ordered_by = request.POST['ordered_by']
+        location = request.POST['location']
+        mobile = request.POST['mobile']
+        email = request.POST['email']
+        order = Order(ordered_by=ordered_by,location=location,mobile=mobile,email=email,cart=cart,order_status=0,customer=customer)
+        order.save()
+        return redirect('store:home')

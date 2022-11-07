@@ -37,7 +37,7 @@
 				<hr>
 				<p><span>Total</span> <span><strong id="total">GH${{cart.cart_total|floatformat:2}}</strong></span></p>
 				<hr>
-				<a href="#"><i class="fa fa-shopping-cart"></i>Checkout</a>
+				<a href="{% url 'store:check_out' %}"><i class="fa fa-shopping-cart"></i>Checkout</a>
 			</div>
 		</div>
 	</div>
