@@ -179,7 +179,7 @@ def delete_item(request):
         cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
         cartitems = Cartitems.objects.filter(product=product, cart=cart)
         cartitems.delete()
-    return JsonResponse('it is working',safe=False)
+    return JsonResponse(safe=False)
 
 def check_out(request):
     customer = Customer.objects.get(admin=request.user)
@@ -204,5 +204,5 @@ def order(request):
         email = request.POST['email']
         order = Order(ordered_by=ordered_by,location=location,mobile=mobile,email=email,cart=cart,order_status=0,customer=customer)
         order.save()
-        messages.success(request,"Your order(s) have been placed successfully. thanks! ")
+        messages.success(request, f" {ordered_by}, Your order(s) have been placed successfully.")
         return redirect('store:home')

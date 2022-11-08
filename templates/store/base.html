@@ -12,7 +12,8 @@
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <!-- custom css file link  -->
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
 
@@ -144,12 +145,14 @@
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <!-- jquery cdn link  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
     <!-- custom js file link  -->
     <script src="{% static 'js/script.js'%}"></script>
     <script src="{% static 'js/cart.js'%}"></script>
     <script src="{% static 'js/home_cart.js'%}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     {% if messages %}
         {% for message in messages %}
             <script>
