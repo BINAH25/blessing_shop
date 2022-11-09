@@ -89,13 +89,15 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+        {% url 'dashboard:all_customer' as all_customer %}
+          <a href="{{all_customer}}" class="nav-link {% if request.path == all_customer %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Customers
             </p>
           </a>
         </li>
+        
 
       </ul>
     </nav>

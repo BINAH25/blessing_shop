@@ -1,0 +1,54 @@
+{% extends 'dashboard/base.html' %}
+{% block page_title %}
+All Customers
+{% endblock page_title %}
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card">
+          
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Last Login</th>
+                  <th>Date Joined</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for customer in customers %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ customer.admin.username }}</td>
+                  <td>{{ customer.admin.email}}</td>
+                  <td>{{ customer.admin.last_login }}</td>
+                  <td>{{ customer.admin.date_joined }}</td>
+                  
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!-- Modal For Add Product-->
+
+
+  
+{% endblock main_content %}

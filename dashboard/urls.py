@@ -17,5 +17,6 @@ urlpatterns = [
     path('order-detail/<int:pk>/', views.AdminOrderDetailView.as_view(), name='dashboard-order-detail'),
     path("order_completed/<int:pk>/", views.order_completed, name="order_completed"),
     path("order_cancel/<int:pk>/", views.order_cancel, name="order_cancel"),
+    path("all_customer", views.all_customer, name="all_customer"),
     
 ]

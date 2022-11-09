@@ -21,6 +21,7 @@ def dashboard_home(request):
     order_canceled = Order.objects.filter(order_status=2).count()
     customers = Customer.objects.all().count()
     orders = Order.objects.all().count()
+
     time_in_hrs = int(time.strftime("%H"))
     if 0 < time_in_hrs < 12:
         greeting = "Good Morning!" 
@@ -227,3 +228,14 @@ class AdminOrderDetailView(DetailView):
     model = Order
     context_object_name = 'ord_obj'
     
+def all_customer(request):
+    customers = Customer.objects.all().order_by('-id')
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
+
+    context = {
+        'customers': customers,
+        'notifications': notifications,
+        'notifications_details':notifications_details
+    }
+    return render(request, 'dashboard/customers.html', context)
