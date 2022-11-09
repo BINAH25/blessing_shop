@@ -15,6 +15,12 @@ from django.views.generic import View, DetailView
 # Create your views here.
 
 def dashboard_home(request):
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
+    order_completed = Order.objects.filter(order_status=1).count()
+    order_canceled = Order.objects.filter(order_status=2).count()
+    customers = Customer.objects.all().count()
+    orders = Order.objects.all().count()
     time_in_hrs = int(time.strftime("%H"))
     if 0 < time_in_hrs < 12:
         greeting = "Good Morning!" 
@@ -23,12 +29,20 @@ def dashboard_home(request):
     else:
         greeting = "Good Evening!"
     context = {
-        'greeting': greeting
+        'greeting': greeting,
+        'notifications': notifications,
+        'notifications_details':notifications_details,
+        'customers': customers,
+        'orders': orders,
+        'order_canceled': order_canceled,
+        'order_completed': order_completed
     }
     return render(request, 'dashboard/home.html', context)
 
 
 def add_category(request):
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
     if request.method =="POST":
         title=request.POST.get("title")
         slug=request.POST.get("slug")
@@ -36,13 +50,20 @@ def add_category(request):
         category.save()
         messages.success(request,"category Added Successfully ")
         return redirect('dashboard:add_category')
-        
-    return render(request, 'dashboard/add_category.html')
+    context = {
+        'notifications': notifications,
+        'notifications_details':notifications_details
+    }   
+    return render(request, 'dashboard/add_category.html', context)
 
 def add_product(request):
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
     categories = Category.objects.all()
     context = {
-        'categories': categories
+        'categories': categories,
+        'notifications': notifications,
+        'notifications_details':notifications_details
     }
     if request.method =="POST":
         name=request.POST.get("name")
@@ -68,10 +89,13 @@ def add_product(request):
 def all_product(request):
     products = Product.objects.all().order_by('-id')
     categories = Category.objects.all()
-
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
     context = {
         'products': products,
-        'categories':categories
+        'categories':categories,
+        'notifications': notifications,
+        'notifications_details':notifications_details
     }
     if request.method =="POST":
         name=request.POST.get("name")
@@ -97,10 +121,13 @@ def all_product(request):
 def edit_product(request,pk):
     product = Product.objects.get(id=pk)
     categories = Category.objects.all()
-
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
     context = {
         'product': product,
-        'categories': categories
+        'categories': categories,
+        'notifications': notifications,
+        'notifications_details':notifications_details
     }
     if request.method =="POST":
         name=request.POST.get("name")
@@ -152,25 +179,34 @@ def dashboard_search(request):
 
 def pending_orders(request):
     all_pending_orders = Order.objects.filter(order_status=0).order_by('-id')
-
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
     context = {
-        'all_pending_orders': all_pending_orders
+        'all_pending_orders': all_pending_orders,
+        'notifications': notifications,
+        'notifications_details':notifications_details
     }
     return render(request, 'dashboard/pending_orders.html', context)
 
 def completed_orders(request):
     all_completed_orders = Order.objects.filter(order_status=1).order_by('-id')
-
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
     context = {
-        'all_completed_orders': all_completed_orders
+        'all_completed_orders': all_completed_orders,
+        'notifications': notifications,
+        'notifications_details':notifications_details
     }
     return render(request, 'dashboard/completed_orders.html', context)
 
 def canceled_orders(request):
     all_canceled_orders = Order.objects.filter(order_status=2).order_by('-id')
-
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
     context = {
-        'all_canceled_orders': all_canceled_orders
+        'all_canceled_orders': all_canceled_orders,
+        'notifications': notifications,
+        'notifications_details':notifications_details
     }
     return render(request, 'dashboard/canceled_orders.html', context)
 

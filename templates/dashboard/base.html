@@ -60,16 +60,17 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-primary navbar-badge">15</span>
+          <span class="badge badge-primary navbar-badge">{{notifications}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <span class="dropdown-item dropdown-header">{{notifications}} Notifications</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+          {% for notifivation in notifications_details%}
+          <a href="{% url 'dashboard:pending_orders' %}" class="dropdown-item">
+            <i class="fas fa-bell mr-2"></i> {{notifivation.ordered_by}}
+            <span class="float-right text-muted text-sm">{{notifivation.created_at|timesince}} ago</span>
           </a>
-          
+          {% endfor %}
         </div>
       </li>
       <!-- Logout  -->

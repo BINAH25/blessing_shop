@@ -12,11 +12,11 @@ Home
         <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>123</h3>
+            <h3>{{customers}}</h3>
             <p>total customers</p>
           </div>
           <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="fas fa-users"></i>
           </div>
           <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
@@ -26,11 +26,11 @@ Home
         <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
-            <h3>253</h3>
+            <h3>{{orders}}</h3>
             <p>Total Orders</p>
           </div>
           <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="fas fa-box"></i>
           </div>
           <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
@@ -40,14 +40,14 @@ Home
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3>253</h3>
+            <h3>{{order_completed}}</h3>
 
-            <p>Pending Orders</p>
+            <p>Orders Completed</p>
           </div>
           <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="fas fa-box"></i>
           </div>
-          <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{% url 'dashboard:completed_orders' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -55,14 +55,14 @@ Home
         <!-- small box -->
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>231</h3>
+            <h3>{{order_canceled}}</h3>
 
-            <p>Completed Orders</p>
+            <p>Canceled Orders</p>
           </div>
           <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="fas fa-box"></i>
           </div>
-          <a href="#" class="small-box-footer">&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{% url 'dashboard:canceled_orders' %}" class="small-box-footer">More info<i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
