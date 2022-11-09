@@ -71,6 +71,24 @@
           </a>
         </li>
         <li class="nav-item">
+        {% url 'dashboard:completed_orders' as completed_orders %}
+          <a href="{{completed_orders}}" class="nav-link {% if request.path == completed_orders %} active {% endif %}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              completed_orders 
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+        {% url 'dashboard:canceled_orders' as canceled_orders %}
+          <a href="{{canceled_orders}}" class="nav-link {% if request.path == canceled_orders %} active {% endif %}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              canceled_orders 
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>

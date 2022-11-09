@@ -158,6 +158,22 @@ def pending_orders(request):
     }
     return render(request, 'dashboard/pending_orders.html', context)
 
+def completed_orders(request):
+    all_completed_orders = Order.objects.filter(order_status=1).order_by('-id')
+
+    context = {
+        'all_completed_orders': all_completed_orders
+    }
+    return render(request, 'dashboard/completed_orders.html', context)
+
+def canceled_orders(request):
+    all_canceled_orders = Order.objects.filter(order_status=2).order_by('-id')
+
+    context = {
+        'all_canceled_orders': all_canceled_orders
+    }
+    return render(request, 'dashboard/canceled_orders.html', context)
+
 def order_completed(request,pk):
     order = Order.objects.get(id=pk)
     order.order_status = 1
