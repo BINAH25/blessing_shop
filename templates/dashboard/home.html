@@ -4,6 +4,19 @@
 Home
 {% endblock page_title %}
 {% block main_content %}
+<div class="form-group">
+  {% if messages %}
+  {% for message in messages %}
+  {% if message.tags == 'error' %}
+  <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+  {% endif %}
+  {% if message.tags == 'success' %}
+  <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+</div>
+
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">

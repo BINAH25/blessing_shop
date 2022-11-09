@@ -239,3 +239,21 @@ def all_customer(request):
         'notifications_details':notifications_details
     }
     return render(request, 'dashboard/customers.html', context)
+
+def change_password(request):
+    if request.method == 'POST':
+        current  = request.POST['current']
+        new  = request.POST['new']
+        confirm  = request.POST['confirm']
+        if new != confirm:
+            messages.error(request, " new password and confirm new password mismatch")
+            return redirect(request.META.get("HTTP_REFERER"))
+        user = EmailBackEnd.authenticate(request,username=request.user.email,password=current)
+        if(user):
+            user.set_password(new)
+            user.save()
+            messages.success(request, "Password changed successfully")
+            return redirect(request.META.get("HTTP_REFERER"))
+        else:
+            messages.error(request, "Incorrect Curent Password")
+            return redirect(request.META.get("HTTP_REFERER"))

@@ -37,7 +37,6 @@ def do_login(request):
         password = request.POST['password']
         user = EmailBackEnd.authenticate(request,username=email,password=password)
         if user !=None:
-            print(user)
             login(request,user)
             if user.user_type=="1":
                 return redirect('dashboard:dashboard_home')
