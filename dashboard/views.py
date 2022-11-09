@@ -151,12 +151,24 @@ def dashboard_search(request):
     return render(request, 'dashboard/dashboard_search.html', context)
 
 def pending_orders(request):
-    all_pending_orders = Order.objects.all()
+    all_pending_orders = Order.objects.filter(order_status=0).order_by('-id')
 
     context = {
         'all_pending_orders': all_pending_orders
     }
     return render(request, 'dashboard/pending_orders.html', context)
+
+def order_completed(request,pk):
+    order = Order.objects.get(id=pk)
+    order.order_status = 1
+    order.save()
+    return redirect('dashboard:pending_orders')
+
+def order_cancel(request,pk):
+    order = Order.objects.get(id=pk)
+    order.order_status = 2
+    order.save()
+    return redirect('dashboard:pending_orders')
 
 class AdminOrderDetailView(DetailView):
     template_name = 'dashboard/pending_orders_detail.html'
