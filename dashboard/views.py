@@ -10,6 +10,8 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 import time
+from django.views.generic import View, DetailView
+
 # Create your views here.
 
 def dashboard_home(request):
@@ -147,3 +149,17 @@ def dashboard_search(request):
             'product':product
         }
     return render(request, 'dashboard/dashboard_search.html', context)
+
+def pending_orders(request):
+    all_pending_orders = Order.objects.all()
+
+    context = {
+        'all_pending_orders': all_pending_orders
+    }
+    return render(request, 'dashboard/pending_orders.html', context)
+
+class AdminOrderDetailView(DetailView):
+    template_name = 'dashboard/pending_orders_detail.html'
+    model = Order
+    context_object_name = 'ord_obj'
+    

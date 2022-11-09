@@ -11,5 +11,7 @@ urlpatterns = [
     path("edit_product/<int:pk>", views.edit_product, name="edit_product"),
     path("delete_product/<int:pk>", views.delete_product, name="delete_product"),
     path("dashboard_search", views.dashboard_search, name="dashboard_search"),
+    path("pending_orders", views.pending_orders, name="pending_orders"),
+    path('order-detail/<int:pk>/', views.AdminOrderDetailView.as_view(), name='dashboard-order-detail'),
     
 ]

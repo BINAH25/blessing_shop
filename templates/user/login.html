@@ -13,11 +13,13 @@
       <div class="login">
         <h1>Welcome Back</h1>
         {% for message in messages %}
-        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
-          <p style="color: green;">{{message}}</p>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        {% endfor %}
+        {% if message.tags == 'error' %}
+        <p style="color: red;">{{message}}</p>
+        {% endif %}
+        {% if message.tags == 'success' %}
+        <p style="color: green;">{{message}}</p>
+        {% endif %}
+        {% endfor %}        
         <form action="" method="post">
           {% csrf_token %}
           <div class="form-control">

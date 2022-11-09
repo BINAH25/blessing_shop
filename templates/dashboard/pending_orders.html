@@ -1,0 +1,63 @@
+{% extends 'dashboard/base.html' %}
+{% block page_title %}
+Pending Orders || New Orders
+{% endblock page_title %}
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card">
+          
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Location</th>
+                  <th>Telephone</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for order in all_pending_orders %}
+                <tr>
+                  <td>{{ order.id }}</td>
+                  <td>{{ order.ordered_by}}</td>
+                  <td>{{ order.email }}</td>
+                  <td>{{ order.location }}</td>
+                  <td>{{ order.mobile }}</td>
+                  <td>{{ order.created_at }}</td>
+                  <td>
+                    <a
+                      href="{% url 'dashboard:dashboard-order-detail' order.id %}"
+                      class="btn btn-primary"
+                      >View</a
+                    >
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!-- Modal For Add Product-->
+
+
+  
+{% endblock main_content %}
