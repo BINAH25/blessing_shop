@@ -13,7 +13,7 @@
                     <h3>{{product.name}}</h3>
                     <span>GH${{product.price}}</span>
                     <p>{{product.description}}</p>
-                    <a class="btn homecart" data-action ="add" data-product="{{product.id}}">add to Cart</a>
+                    <a class="btn homecart" data-action="add" data-product="{{product.id}}">add to Cart</a>
                 </div>
                 <div class="image">
                     <img src="{{product.image.url}}" alt="">
@@ -51,7 +51,7 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>GH${{product.price}}</span>
-            <a  class="btn addtocart" data-action ="add" data-product="{{product.id}}">add to cart</a>
+            <a class="btn addtocart" data-action="add" data-product="{{product.id}}">add to cart</a>
         </div>
         {% endfor %}
 
@@ -91,13 +91,50 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>GH${{product.price}}</span>
-            <a  class="btn addtocart" data-action ="add" data-product="{{product.id}}">add to cart</a>
+            <a class="btn addtocart" data-action="add" data-product="{{product.id}}">add to cart</a>
         </div>
         {% endfor %}
 
 
     </div>
 </section>
+<section class="review" id="review">
+
+    <h1 class="heading"> <span>customer's review </span> </h1>
+
+    <div class="swiper-container review-slider" style="margin-top: 20px;">
+
+        <div class="swiper-wrapper">
+            {% for review in reviews %}
+            <div class="swiper-slide slide">
+                <i class="fas fa-quote-right"></i>
+                <div class="user">
+                    <img src="{{review.image.url}}" alt="">
+                    <div class="user-info">
+                        <h3>{{review.name}}</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p>{{review.text}} <br></p>
+
+            </div>
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- review section ends -->
 
 
 {% endblock content %}

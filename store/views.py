@@ -12,6 +12,7 @@ from django.contrib import messages
 
 # Create your views here.
 def home(request):
+    reviews = Review.objects.all()
     categories = Category.objects.all()
     products = Product.objects.all()
     top_deal = Product.objects.filter(top_deal=True)
@@ -31,7 +32,8 @@ def home(request):
         'flash_sales': flash_sales,
         'categories': categories,
         'cart': cart,
-        'cartitems': cartitems
+        'cartitems': cartitems,
+        'reviews': reviews
     }
     return render(request, 'store/index.html',context)
 

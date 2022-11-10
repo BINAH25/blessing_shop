@@ -124,3 +124,11 @@ class Order(models.Model):
     def __str__(self):
         return "Order: " + str(self.id)
 
+class Review(models.Model):
+    name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="test_images")
+    text = models.TextField()
+
+
+    def __str__(self):
+        return self.name

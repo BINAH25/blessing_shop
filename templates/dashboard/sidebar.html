@@ -97,6 +97,15 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+        {% url 'dashboard:add_review' as add_review %}
+          <a href="{{add_review}}" class="nav-link {% if request.path == add_review %} active {% endif %}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Add Review
+            </p>
+          </a>
+        </li>
         
 
       </ul>

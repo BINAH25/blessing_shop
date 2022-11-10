@@ -298,5 +298,27 @@ def admin_update_profile(request):
             messages.error(request, "Failed to update profile")
             return redirect('dashboard:admin_profile')
 
-
     return render(request, 'dashboard/update_profile.html', context)
+
+
+def add_review(request):
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
+    context = {
+        'notifications': notifications,
+        'notifications_details':notifications_details
+    }
+    if request.method == "POST":
+        name = request.POST['name']
+        profile = request.FILES['profile']
+        message = request.POST['message']
+        try:
+            review = Review(name=name,image=profile,text=message) 
+            review.save() 
+            messages.success(request, "Review Added successfully")
+            return redirect('dashboard:add_review')
+        except:
+            messages.error(request, "Failed to Review")
+            return redirect('dashboard:add_review')
+  
+    return render(request, 'dashboard/review.html', context)
