@@ -14,7 +14,7 @@
         <img src="{{user.adminhead.image.url}}" class="img-circle elevation-2" alt="User Image" />
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{user.username}}</a>
+        <a href="{% url 'dashboard:admin_profile' %}" class="d-block">{{user.username}}</a>
       </div>
     </div>
 

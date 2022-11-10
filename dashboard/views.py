@@ -257,3 +257,15 @@ def change_password(request):
         else:
             messages.error(request, "Incorrect Curent Password")
             return redirect(request.META.get("HTTP_REFERER"))
+
+def admin_profile(request):
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
+    context = {
+        'notifications': notifications,
+        'notifications_details':notifications_details
+    }
+    return render(request, 'dashboard/admin_profile.html',context)
+
+def admin_update_profile(request):
+    return render
