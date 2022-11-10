@@ -268,4 +268,35 @@ def admin_profile(request):
     return render(request, 'dashboard/admin_profile.html',context)
 
 def admin_update_profile(request):
-    return render
+    admin = request.user.id
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
+    context = {
+        'notifications': notifications,
+        'notifications_details':notifications_details
+    }
+    if request.method == "POST":
+        username = request.POST['username']
+        email = request.POST['email']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        profile_pic = request.FILES["profile"]
+        admin_id = request.POST['admin_id']
+        user = CustomUser.objects.get(id=admin)
+        admin_pro = AdminHEAD.objects.get(id=admin_id)
+        try:
+            user.first_name=first_name
+            user.last_name=last_name
+            user.email=email
+            user.username=username
+            user.save()
+            admin_pro.image = profile_pic
+            admin_pro.save()
+            messages.success(request, "Profile updated successfully")
+            return redirect('dashboard:admin_profile')
+        except:
+            messages.error(request, "Failed to update profile")
+            return redirect('dashboard:admin_profile')
+
+
+    return render(request, 'dashboard/update_profile.html', context)

@@ -7,6 +7,18 @@ Admin Profile
 
 <!--Table-->
 <div class="container">
+    <div class="form-group">
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+        {% endif %}
+        {% if message.tags == 'success' %}
+        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
     <div class="row my-4">
         <div class="col-md-12">
             <div class="card">
@@ -17,11 +29,12 @@ Admin Profile
                     <div class="row">
                         <div class="col-md-8">
                             <span class="h4"> Profile Information</span>
-                            <button class="btn btn-primary text-white float-right"><a href="" class="text-white">
+                            <button class="btn btn-primary text-white float-right"><a href="{% url 'dashboard:admin_update_profile' %}" class="text-white">
                              Update</a></button>
 
                             <hr>
                             <table class="table bg-white table-borderless">
+                            
                                 <tbody>
                                     <tr>
                                         <th scope="row">Username</th>
@@ -29,11 +42,11 @@ Admin Profile
                                     </tr>
                                     <tr>
                                         <th scope="row">Firstname</th>
-                                        <td>{{user.firstname}}</td>
+                                        <td>{{user.first_name}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Lastname</th>
-                                        <td>{{user.lastname}}</td>
+                                        <td>{{user.last_name}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Email</th>
