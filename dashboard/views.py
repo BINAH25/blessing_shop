@@ -343,4 +343,4 @@ def add_blog(request):
             messages.error(request, "Failed to add Blog")
             return redirect('dashboard:add_blog')
   
-    return render(request, 'dashboard/add_blog.html')
+    return render(request, 'dashboard/add_blog.html',context)

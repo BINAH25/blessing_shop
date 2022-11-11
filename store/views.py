@@ -210,4 +210,8 @@ def order(request):
         return redirect('store:home')
 
 def blog(request):
-    return render(request, 'store/blog.html')
+    blogs = Blog.objects.all().order_by('-id')
+    context = {
+        'blogs': blogs
+    }
+    return render(request, 'store/blog.html', context)
