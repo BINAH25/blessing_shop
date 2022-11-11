@@ -318,7 +318,29 @@ def add_review(request):
             messages.success(request, "Review Added successfully")
             return redirect('dashboard:add_review')
         except:
-            messages.error(request, "Failed to Review")
+            messages.error(request, "Failed to add Review")
             return redirect('dashboard:add_review')
   
     return render(request, 'dashboard/review.html', context)
+
+def add_blog(request):
+    notifications = Order.objects.filter(order_status=0).count()
+    notifications_details = Order.objects.filter(order_status=0).order_by('-id')
+    context = {
+        'notifications': notifications,
+        'notifications_details':notifications_details
+    }
+    if request.method == "POST":
+        title = request.POST['title']
+        profile = request.FILES['profile']
+        message = request.POST['message']
+        try:
+            blog = Blog(title=title,image=profile,text=message) 
+            blog.save() 
+            messages.success(request, "Blog Added successfully")
+            return redirect('dashboard:add_blog')
+        except:
+            messages.error(request, "Failed to add Blog")
+            return redirect('dashboard:add_blog')
+  
+    return render(request, 'dashboard/add_blog.html')

@@ -29,10 +29,12 @@
         <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> JewelryPalace </a>
 
         <nav class="navbar">
-            <a class="active" href="{% url 'store:home'%}">home</a>
+            {% url 'store:home' as home %}
+            <a href="{{home}}" class="{% if request.path == home %} active {% endif %}">home</a>
             <a href="#category">categories</a>
             <a href="#review">review</a>
-            <a href="{% url 'store:blog'%}">blogs</a>
+            {% url 'store:blog' as blog %}
+            <a href="{{blog}}" class="{% if request.path == blog %} active {% endif %}">blogs</a>
         </nav>
 
         <div class="icons">

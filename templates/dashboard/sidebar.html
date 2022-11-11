@@ -34,7 +34,7 @@
         </li>
 
         <li class="nav-item">
-        {% url 'dashboard:add_category' as add_category %}
+          {% url 'dashboard:add_category' as add_category %}
           <a href="{{add_category}}" class="nav-link {% if request.path == add_category %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
@@ -44,7 +44,7 @@
         </li>
 
         <li class="nav-item">
-        {% url 'dashboard:add_product' as add_product %}
+          {% url 'dashboard:add_product' as add_product %}
           <a href="{{add_product}}" class="nav-link {% if request.path == add_product %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
@@ -53,7 +53,7 @@
           </a>
         </li>
         <li class="nav-item">
-        {% url 'dashboard:all_product' as all_product %}
+          {% url 'dashboard:all_product' as all_product %}
           <a href="{{all_product}}" class="nav-link {% if request.path == all_product %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
@@ -62,7 +62,7 @@
           </a>
         </li>
         <li class="nav-item">
-        {% url 'dashboard:pending_orders' as pending_orders %}
+          {% url 'dashboard:pending_orders' as pending_orders %}
           <a href="{{pending_orders}}" class="nav-link {% if request.path == pending_orders %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
@@ -71,25 +71,25 @@
           </a>
         </li>
         <li class="nav-item">
-        {% url 'dashboard:completed_orders' as completed_orders %}
+          {% url 'dashboard:completed_orders' as completed_orders %}
           <a href="{{completed_orders}}" class="nav-link {% if request.path == completed_orders %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              completed_orders 
+              completed_orders
             </p>
           </a>
         </li>
         <li class="nav-item">
-        {% url 'dashboard:canceled_orders' as canceled_orders %}
+          {% url 'dashboard:canceled_orders' as canceled_orders %}
           <a href="{{canceled_orders}}" class="nav-link {% if request.path == canceled_orders %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              canceled_orders 
+              canceled_orders
             </p>
           </a>
         </li>
         <li class="nav-item">
-        {% url 'dashboard:all_customer' as all_customer %}
+          {% url 'dashboard:all_customer' as all_customer %}
           <a href="{{all_customer}}" class="nav-link {% if request.path == all_customer %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
@@ -98,7 +98,7 @@
           </a>
         </li>
         <li class="nav-item">
-        {% url 'dashboard:add_review' as add_review %}
+          {% url 'dashboard:add_review' as add_review %}
           <a href="{{add_review}}" class="nav-link {% if request.path == add_review %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
@@ -106,7 +106,17 @@
             </p>
           </a>
         </li>
-        
+
+        <li class="nav-item">
+          {% url 'dashboard:add_blog' as add_blog %}
+          <a href="{{add_blog}}" class="nav-link {% if request.path == add_blog %} active {% endif %}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Add Blog
+            </p>
+          </a>
+        </li>
+
 
       </ul>
     </nav>
