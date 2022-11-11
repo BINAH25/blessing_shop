@@ -208,3 +208,6 @@ def order(request):
         order.save()
         messages.success(request, f" {ordered_by}, Your order(s) have been placed successfully.")
         return redirect('store:home')
+
+def blog(request):
+    return render(request, 'store/blog.html')

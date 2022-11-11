@@ -58,6 +58,21 @@ section {
   border-top-right-radius: 3rem;
   display: inline-block;
 }
+.headings {
+  text-align: center;
+  padding: 2rem 0;
+  padding-bottom: 3rem;
+  font-size: 3.5rem;
+  color: var(--black);
+}
+
+.headings span {
+  background: var(--blue);
+  color: #fff;
+  display: inline-block;
+  padding: 0.5rem 3rem;
+  clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
+}
 
 .btn {
   margin-top: 1rem;
@@ -626,6 +641,7 @@ header .navbar a:hover {
   font-size: 1.5rem;
   line-height: 1.8;
   color: var(--light-color);
+  text-align: justify;
 }
 
 .blogs .box-container {
