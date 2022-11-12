@@ -57,30 +57,30 @@
       </h4>
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="modal" data-target="#reply_modal" role="button" style="cursor:pointer;">
-          <i class="fas fa-cog"></i>
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-primary navbar-badge">{{notifications}}</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">{{notifications}} Notifications</span>
-          <div class="dropdown-divider"></div>
-          {% for notifivation in notifications_details%}
-          <a href="{% url 'dashboard:pending_orders' %}" class="dropdown-item">
-            <i class="fas fa-bell mr-2"></i> {{notifivation.ordered_by}}
-            <span class="float-right text-muted text-sm">{{notifivation.created_at|timesince}} ago</span>
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="modal" data-target="#reply_modal" role="button" style="cursor:pointer;">
+            <i class="fas fa-cog"></i>
           </a>
-          {% endfor %}
-        </div>
-      </li>
-      <!-- Logout  -->
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="far fa-bell"></i>
+            <span class="badge badge-primary navbar-badge">{{notifications}}</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">{{notifications}} Notifications</span>
+            <div class="dropdown-divider"></div>
+            {% for notifivation in notifications_details%}
+            <a href="{% url 'dashboard:pending_orders' %}" class="dropdown-item">
+              <i class="fas fa-bell mr-2"></i> {{notifivation.ordered_by}}
+              <span class="float-right text-muted text-sm">{{notifivation.created_at|timesince}} ago</span>
+            </a>
+            {% endfor %}
+          </div>
+        </li>
+        <!-- Logout  -->
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout_user'%}"> Logout </a>
+          <a class="nav-link" href="{% url 'dashboard:logout_admin'%}"> Logout </a>
         </li>
       </ul>
 
@@ -118,46 +118,46 @@
       <!-- Modal For Add Product-->
 
       <div class="modal fade" id="reply_modal" role="dialog">
-    <div class="modal-dialog">
+        <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Change Password</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Change Password</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-        </div>
-        <form role="form" action="{% url 'dashboard:change_password' %}" method="post">
-            {% csrf_token %}
-            <div class="card-body">
-                <div class="form-group">
-                    <label>current Password</label>
-                    <input type="password" class="form-control" name="current" placeholder="current password">
-                </div>
-                
-                <div class="form-group">
-                    <label>New Password</label>
-                    <input type="password" class="form-control" placeholder="New Password" name="new">
-                </div>
-                <div class="form-group">
-                    <label>Confirm New Password</label>
-                    <input type="password" class="form-control" placeholder="Confirm New Password" name="confirm">
-                </div>
-                
-              </div>
-            <!-- /.card-body -->
-
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-block">Change Password</button>
             </div>
-        </form>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <form role="form" action="{% url 'dashboard:change_password' %}" method="post">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="form-group">
+                  <label>current Password</label>
+                  <input type="password" class="form-control" name="current" placeholder="current password">
+                </div>
+
+                <div class="form-group">
+                  <label>New Password</label>
+                  <input type="password" class="form-control" placeholder="New Password" name="new">
+                </div>
+                <div class="form-group">
+                  <label>Confirm New Password</label>
+                  <input type="password" class="form-control" placeholder="Confirm New Password" name="confirm">
+                </div>
+
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-block">Change Password</button>
+              </div>
+            </form>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
         </div>
       </div>
-
-    </div>
-  </div>
 
 
       {% block main_content %}{% endblock main_content %}
