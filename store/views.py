@@ -215,3 +215,12 @@ def blog(request):
         'blogs': blogs
     }
     return render(request, 'store/blog.html', context)
+
+
+def blog_details(request,pk):
+    blogs = Blog.objects.get(id=pk)
+    context = {
+        'blogs': blogs
+    }
+    
+    return render(request, 'store/blog_details.html', context)

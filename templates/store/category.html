@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<section class="category" id="category">
+<section class="category" id="category" style="margin-top: 10px;">
     <h1 class="heading"> <span>{{category.title}} </span> </h1>
 
     <ul class="controls">
@@ -11,15 +11,15 @@
         </a>
         {% for category in categories %}
         <a href="{% url 'store:category' category.slug %}">
-            <li class="btn" >{{category.title}}</li>
+            <li class="btn">{{category.title}}</li>
         </a>
         {% endfor %}
     </ul>
     <div class="box-container" style="margin-top: 10px;">
         {% for product in product %}
         <div class="box">
-            <a  class="fas fa-heart"></a>
-            <a  class="fas fa-eye"></a>
+            <a class="fas fa-heart"></a>
+            <a class="fas fa-eye"></a>
             <img src="{{ product.image.url}}" alt="">
             <a href="{% url 'store:product_detail' product.id %}">
                 <h3>{{product.name}}</h3>
@@ -32,7 +32,7 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>GH${{product.price}}</span>
-            <a  class="btn addtocart" data-action ="add" data-product="{{product.id}}">add to cart</a>
+            <a class="btn addtocart" data-action="add" data-product="{{product.id}}">add to cart</a>
         </div>
         {% endfor %}
 

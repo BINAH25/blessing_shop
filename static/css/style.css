@@ -73,6 +73,15 @@ section {
   padding: 0.5rem 3rem;
   clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
 }
+.whatsapp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin-left: 95%;
+  margin-top: 40%;
+}
 
 .btn {
   margin-top: 1rem;
@@ -818,6 +827,10 @@ header .navbar a:hover {
   #menu-btn {
     display: inline-block;
   }
+  .whatsapp {
+    margin-left: 90%;
+    margin-top: 80%;
+  }
 
   .header .search-form {
     width: 90%;
@@ -851,7 +864,10 @@ header .navbar a:hover {
   html {
     font-size: 50%;
   }
-
+  .whatsapp {
+    margin-left: 83%;
+    margin-top: 150%;
+  }
   .heading {
     font-size: 2.5rem;
   }

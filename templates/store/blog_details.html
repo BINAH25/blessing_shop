@@ -7,21 +7,19 @@
     <h1 class="headings" style="margin-top: 70px;"> our <span>blogs</span> </h1>
 
     <div class="box-container">
-        {% for blog in blogs %}
         <div class="box">
-            <img src="{{blog.image.url}}" alt="">
+            <img src="{{blogs.image.url}}" alt="">
             <div class="content">
                 <div class="icons">
                     <a> <i class="fas fa-user"></i> by Admin </a>
-                    <a> <i class="fas fa-calendar"></i> {{blog.date|timesince}} <span
+                    <a> <i class="fas fa-calendar"></i> {{blogs.date|timesince}} <span
                             style="text-transform: lowercase;">ago</span> </a>
                 </div>
-                <h3>{{blog.title}}</h3>
-                <p>{{blog.text|truncatewords:20}}</p>
-                <a href="{% url 'store:blog_details' blog.id %}" class="btn">read more</a>
+                <h3>{{blogs.title}}</h3>
+                <p>{{blogs.text}}</p>
+                <a href="{% url 'store:blog' %}" class="btn">Back</a>
             </div>
         </div>
-        {% endfor %}
     </div>
 
 </section>

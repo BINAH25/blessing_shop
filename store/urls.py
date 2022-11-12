@@ -16,5 +16,6 @@ urlpatterns = [
     path('check_out', views.check_out, name = 'check_out'),
     path('order', views.order, name = 'order'),
     path('blog', views.blog, name = 'blog'),
+    path('blog_details/<int:pk>', views.blog_details, name = 'blog_details'),
 
 ]
