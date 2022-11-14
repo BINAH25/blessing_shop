@@ -83,7 +83,9 @@ def user_orders(request):
 
 def user_profile(request):
     return render(request, 'user/user_profile.html')
-    
+
+def user_profile_update(request):
+    return render(request, 'user_profile_update.html')
 class CustomerOrderDetail(DetailView):
     template_name = 'user/user_order_detail.html'
     model = Order

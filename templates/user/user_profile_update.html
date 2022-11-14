@@ -1,0 +1,74 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}PROFILE UPDATE PAGE{% endblock %}
+{% block page_title %}
+PROFILE UPDATE
+{% endblock page_title %}
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Update Profile</h3>
+                    </div>
+                    <div class="form-group">
+
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype=multipart/form-data>
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" placeholder="Username" name="username"
+                                    value="{{ user.username }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter email"
+                                    value="{{ user.email }}">
+                            </div>
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" placeholder="First Name" name="first_name"
+                                    value="{{ user.first_name }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" placeholder="Last Name" name="last_name"
+                                    value="{{ user.last_name }}">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <input type="file" class="form-control" placeholder="Profile" name="profile"
+                                    value="{{user.adminhead.image.url}}">
+                                <input type="hidden" name="admin_id" value="{{ user.adminhead.id }}">
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Update</button>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'dashboard:admin_profile' %}" class="btn btn-danger btn-block">cancel</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+{% endblock main_content %}

@@ -1,0 +1,73 @@
+{% extends 'user/base.html' %}
+{% block title %}Profile PAGE{% endblock %}
+{% block page_title %}
+My Profile
+{% endblock page_title %}
+{% block main_content %}
+
+<!--Table-->
+<div class="container">
+    <div class="form-group">
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+        {% endif %}
+        {% if message.tags == 'success' %}
+        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="row my-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Profile Page
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <span class="h4"> Profile Information</span>
+                            <button class="btn btn-primary text-white float-right"><a
+                                    href="{% url 'dashboard:admin_update_profile' %}" class="text-white">
+                                    Update</a></button>
+
+                            <hr>
+                            <table class="table bg-white table-borderless">
+
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Username</th>
+                                        <td>{{user.username}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Firstname</th>
+                                        <td>{{user.first_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Lastname</th>
+                                        <td>{{user.last_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Email</th>
+                                        <td>{{user.email}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-4 my-5">
+                            <img class="img-thumbnail" src="{{user.customer.image.url}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--End Table-->
+{% endblock main_content %}
