@@ -53,3 +53,12 @@ def do_login(request):
 def logout_user(request):
     logout(request)
     return redirect("store:home")
+
+
+def user_orders(request):
+    customer = Customer.objects.get(admin=request.user)
+    orders = Order.objects.filter(customer=customer)
+    context = {
+        'orders': orders
+    }
+    return render(request, 'user/orders.html',context)
