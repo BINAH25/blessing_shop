@@ -9,7 +9,10 @@ urlpatterns = [
     path("do_login", views.do_login, name="do_login"),
     path("logout_user", views.logout_user, name="logout_user"),
     path("user_orders", views.user_orders, name="user_orders"),
-    
+    path("user_profile", views.user_profile, name="user_profile"),
+    path("change_password_user", views.change_password_user, name="change_password_user"),
+    path ('user/order-<int:pk>/', views.CustomerOrderDetail.as_view(), name='customerorderdetail'),
+
     # ******************* RESET PASSWORD VIEW *****************************
     path('password_reset', auth_views.PasswordResetView.as_view(
         template_name='user/reset_password.html'), name='password_reset'),

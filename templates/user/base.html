@@ -46,7 +46,8 @@
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="modal" data-target="#password_modal" role="button" style="cursor:pointer;">
+          <a class="nav-link" data-toggle="modal" data-target="#password_modal_user" role="button"
+            style="cursor:pointer;">
             <i class="fas fa-cog"></i>
           </a>
         </li>
@@ -90,7 +91,7 @@
       <!-- /.content-header -->
       <!-- Modal For Add Product-->
 
-      <div class="modal fade" id="password_modal" role="dialog">
+      <div class="modal fade" id="password_modal_user" role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -100,7 +101,7 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
 
             </div>
-            <form role="form" action="{% url 'dashboard:change_password' %}" method="post">
+            <form role="form" action="{% url 'change_password_user' %}" method="post">
               {% csrf_token %}
               <div class="card-body">
                 <div class="form-group">

@@ -24,10 +24,28 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="" class="nav-link ">
+          <a href="{% url 'store:home' %}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Home
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'user_orders' as user_orders %}
+          <a href="{{user_orders}}" class="nav-link {% if request.path == user_orders %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               My Orders
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'user_profile' as user_profile %}
+          <a href="{{user_profile}}" class="nav-link {% if request.path == user_profile %} active {% endif %}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              My Profile
             </p>
           </a>
         </li>

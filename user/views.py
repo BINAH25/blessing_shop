@@ -3,6 +3,7 @@ from django.contrib import messages
 from dashboard.models import *
 from django.contrib.auth import authenticate, login, logout
 from .EmailBackEnd import *
+from django.views.generic import DetailView
 
 # Create your views here.
 def register(request):
@@ -54,6 +55,23 @@ def logout_user(request):
     logout(request)
     return redirect("store:home")
 
+def change_password_user(request):
+    if request.method == 'POST':
+        current  = request.POST['current']
+        new  = request.POST['new']
+        confirm  = request.POST['confirm']
+        if new != confirm:
+            messages.error(request, " new password and confirm new password mismatch")
+            return redirect('user_orders')
+        user = EmailBackEnd.authenticate(request,username=request.user.email,password=current)
+        if(user):
+            user.set_password(new)
+            user.save()
+            messages.success(request, "Password changed successfully")
+            return redirect('store:home')
+        else:
+            messages.error(request, "Incorrect Curent Password")
+            return redirect('user_orders')
 
 def user_orders(request):
     customer = Customer.objects.get(admin=request.user)
@@ -62,3 +80,11 @@ def user_orders(request):
         'orders': orders
     }
     return render(request, 'user/orders.html',context)
+
+def user_profile(request):
+    return render(request, 'user/user_profile.html')
+    
+class CustomerOrderDetail(DetailView):
+    template_name = 'user/user_order_detail.html'
+    model = Order
+    context_object_name = 'ord_obj'
