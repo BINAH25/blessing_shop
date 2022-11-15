@@ -15,11 +15,11 @@ PROFILE UPDATE
                         <h3 class="card-title">Update Profile</h3>
                     </div>
                     <div class="form-group">
-                        
+
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="post" enctype= multipart/form-data>
+                    <form role="form" method="post" enctype=multipart/form-data>
                         {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">
@@ -27,7 +27,7 @@ PROFILE UPDATE
                                 <input type="text" class="form-control" placeholder="Username" name="username"
                                     value="{{ user.username }}">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>Email address</label>
                                 <input type="email" class="form-control" name="email" placeholder="Enter email"
@@ -46,7 +46,8 @@ PROFILE UPDATE
                             </div>
                             <div class="form-group">
                                 <label>Profile Image</label>
-                                <input type="file" class="form-control" placeholder="Profile" name="profile" value="{{user.adminhead.image.url}}">
+                                <input type="file" class="form-control" placeholder="Profile" name="profile"
+                                    value="{{user.adminhead.image.url}}">
                                 <input type="hidden" name="admin_id" value="{{ user.adminhead.id }}">
                             </div>
 

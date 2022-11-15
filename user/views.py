@@ -85,7 +85,32 @@ def user_profile(request):
     return render(request, 'user/user_profile.html')
 
 def user_profile_update(request):
-    return render(request, 'user_profile_update.html')
+    customer = request.user.id
+    if request.method == "POST":
+        username = request.POST['username']
+        email = request.POST['email']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        profile_pic = request.FILES["profile"]
+        customer_id = request.POST['admin_id']
+        user = CustomUser.objects.get(id=customer)
+        customer_obj = Customer.objects.get(id=customer_id)
+        try:
+            user.first_name=first_name
+            user.last_name=last_name
+            user.email=email
+            user.username=username
+            user.save()
+            customer_obj.image = profile_pic
+            customer_obj.save()
+            messages.success(request, "Profile updated successfully")
+            return redirect('user_profile')
+        except:
+            messages.error(request, "Failed to update profile")
+            return redirect('user_profile')
+
+    return render(request, 'user/user_profile_update.html')
+
 class CustomerOrderDetail(DetailView):
     template_name = 'user/user_order_detail.html'
     model = Order

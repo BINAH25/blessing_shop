@@ -47,8 +47,8 @@ PROFILE UPDATE
                             <div class="form-group">
                                 <label>Profile Image</label>
                                 <input type="file" class="form-control" placeholder="Profile" name="profile"
-                                    value="{{user.adminhead.image.url}}">
-                                <input type="hidden" name="admin_id" value="{{ user.adminhead.id }}">
+                                    value="{{user.customer.image.url}}">
+                                <input type="hidden" name="admin_id" value="{{ user.customer.id }}">
                             </div>
 
                         </div>
@@ -58,7 +58,7 @@ PROFILE UPDATE
                             <button type="submit" class="btn btn-primary btn-block">Update</button>
                         </div>
                         <div class="card-footer">
-                            <a href="{% url 'dashboard:admin_profile' %}" class="btn btn-danger btn-block">cancel</a>
+                            <a href="{% url 'user_profile' %}" class="btn btn-danger btn-block">cancel</a>
                         </div>
                     </form>
                 </div>
