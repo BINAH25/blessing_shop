@@ -13,7 +13,7 @@ import time
 from django.views.generic import View, DetailView
 
 # Create your views here.
-
+@login_required(login_url="admin_login")   
 def dashboard_home(request):
     notifications = Order.objects.filter(order_status=0).count()
     notifications_details = Order.objects.filter(order_status=0).order_by('-id')
@@ -40,7 +40,7 @@ def dashboard_home(request):
     }
     return render(request, 'dashboard/home.html', context)
 
-
+@login_required(login_url="admin_login")   
 def add_category(request):
     notifications = Order.objects.filter(order_status=0).count()
     notifications_details = Order.objects.filter(order_status=0).order_by('-id')
@@ -57,6 +57,7 @@ def add_category(request):
     }   
     return render(request, 'dashboard/add_category.html', context)
 
+@login_required(login_url="admin_login")   
 def add_product(request):
     notifications = Order.objects.filter(order_status=0).count()
     notifications_details = Order.objects.filter(order_status=0).order_by('-id')
@@ -87,6 +88,7 @@ def add_product(request):
 
     return render(request, 'dashboard/add_product.html',context)
 
+@login_required(login_url="admin_login")   
 def all_product(request):
     products = Product.objects.all().order_by('-id')
     categories = Category.objects.all()
@@ -119,6 +121,7 @@ def all_product(request):
 
     return render(request, 'dashboard/all_product.html', context)
 
+@login_required(login_url="admin_login")   
 def edit_product(request,pk):
     product = Product.objects.get(id=pk)
     categories = Category.objects.all()
@@ -158,6 +161,7 @@ def edit_product(request,pk):
 
     return render(request, 'dashboard/edit_product.html', context)
 
+@login_required(login_url="admin_login")   
 def delete_product(request,pk):
     product=Product.objects.get(id=pk)
     try:
@@ -169,6 +173,7 @@ def delete_product(request,pk):
         return redirect('dashboard:all_product')
             
 
+@login_required(login_url="admin_login")   
 def dashboard_search(request):
     if request.method == 'POST':
         kw = request.POST['keyword']
@@ -189,6 +194,7 @@ def pending_orders(request):
     }
     return render(request, 'dashboard/pending_orders.html', context)
 
+@login_required(login_url="admin_login")   
 def completed_orders(request):
     all_completed_orders = Order.objects.filter(order_status=1).order_by('-id')
     notifications = Order.objects.filter(order_status=0).count()
@@ -200,6 +206,7 @@ def completed_orders(request):
     }
     return render(request, 'dashboard/completed_orders.html', context)
 
+@login_required(login_url="admin_login")   
 def canceled_orders(request):
     all_canceled_orders = Order.objects.filter(order_status=2).order_by('-id')
     notifications = Order.objects.filter(order_status=0).count()
@@ -211,12 +218,14 @@ def canceled_orders(request):
     }
     return render(request, 'dashboard/canceled_orders.html', context)
 
+@login_required(login_url="admin_login")   
 def order_completed(request,pk):
     order = Order.objects.get(id=pk)
     order.order_status = 1
     order.save()
     return redirect('dashboard:pending_orders')
 
+@login_required(login_url="admin_login")   
 def order_cancel(request,pk):
     order = Order.objects.get(id=pk)
     order.order_status = 2
@@ -227,7 +236,8 @@ class AdminOrderDetailView(DetailView):
     template_name = 'dashboard/pending_orders_detail.html'
     model = Order
     context_object_name = 'ord_obj'
-    
+
+@login_required(login_url="admin_login")      
 def all_customer(request):
     customers = Customer.objects.all().order_by('-id')
     notifications = Order.objects.filter(order_status=0).count()
@@ -240,6 +250,7 @@ def all_customer(request):
     }
     return render(request, 'dashboard/customers.html', context)
 
+@login_required(login_url="admin_login")   
 def change_password(request):
     if request.method == 'POST':
         current  = request.POST['current']
@@ -258,6 +269,7 @@ def change_password(request):
             messages.error(request, "Incorrect Curent Password")
             return redirect(request.META.get("HTTP_REFERER"))
 
+@login_required(login_url="admin_login")   
 def admin_profile(request):
     notifications = Order.objects.filter(order_status=0).count()
     notifications_details = Order.objects.filter(order_status=0).order_by('-id')
@@ -267,6 +279,7 @@ def admin_profile(request):
     }
     return render(request, 'dashboard/admin_profile.html',context)
 
+@login_required(login_url="admin_login")   
 def admin_update_profile(request):
     admin = request.user.id
     notifications = Order.objects.filter(order_status=0).count()
@@ -301,6 +314,7 @@ def admin_update_profile(request):
     return render(request, 'dashboard/update_profile.html', context)
 
 
+@login_required(login_url="admin_login")   
 def add_review(request):
     notifications = Order.objects.filter(order_status=0).count()
     notifications_details = Order.objects.filter(order_status=0).order_by('-id')
@@ -323,6 +337,7 @@ def add_review(request):
   
     return render(request, 'dashboard/review.html', context)
 
+@login_required(login_url="admin_login")   
 def add_blog(request):
     notifications = Order.objects.filter(order_status=0).count()
     notifications_details = Order.objects.filter(order_status=0).order_by('-id')
@@ -345,6 +360,7 @@ def add_blog(request):
   
     return render(request, 'dashboard/add_blog.html',context)
 
+@login_required(login_url="admin_login")   
 def admin_login(request):
     if request.method == 'POST':
         email = request.POST['email']
