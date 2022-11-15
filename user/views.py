@@ -4,6 +4,7 @@ from dashboard.models import *
 from django.contrib.auth import authenticate, login, logout
 from .EmailBackEnd import *
 from django.views.generic import DetailView
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def register(request):
@@ -73,6 +74,7 @@ def change_password_user(request):
             messages.error(request, "Incorrect Curent Password")
             return redirect('user_orders')
 
+@login_required(login_url="do_login")   
 def user_orders(request):
     customer = Customer.objects.get(admin=request.user)
     orders = Order.objects.filter(customer=customer)
@@ -81,9 +83,11 @@ def user_orders(request):
     }
     return render(request, 'user/orders.html',context)
 
+@login_required(login_url="do_login")   
 def user_profile(request):
     return render(request, 'user/user_profile.html')
 
+@login_required(login_url="do_login")   
 def user_profile_update(request):
     customer = request.user.id
     if request.method == "POST":
