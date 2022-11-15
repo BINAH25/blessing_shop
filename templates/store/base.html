@@ -44,14 +44,15 @@
             <a href="{% url 'store:cart'%}">
                 <div class="fas fa-shopping-cart" id="cart-btn"><span id="cart">{{cart.num_of_items}}</span></div>
             </a>
-            <div class="fas fa-user" id="login-btn"></div>
             {% if request.user.is_authenticated %}
-            <a href="{% url 'logout_user'%}">
-                <div class="fas fa-sign-out-alt" id="login-btn"></div>
-            </a>
             <a href="{% url 'user_orders'%}">
                 <div class="fas fa-box" id="login-btn"></div>
             </a>
+            <a href="{% url 'logout_user'%}">
+                <div class="fas fa-sign-out-alt" id="login-btn"></div>
+            </a>
+            {% else %}
+            <div class="fas fa-user" id="login-btn"></div>
             {% endif %}
         </div>
 
