@@ -8,7 +8,6 @@ User = get_user_model()
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
-    print("DEBUf", created,instance.user_type)
     if created:
         if instance.user_type==1:
             AdminHEAD.objects.create(admin=instance)

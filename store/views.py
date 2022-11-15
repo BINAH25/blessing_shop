@@ -181,7 +181,7 @@ def delete_item(request):
         cart, created = Cart.objects.get_or_create(owner=customer, completed=False)
         cartitems = Cartitems.objects.filter(product=product, cart=cart)
         cartitems.delete()
-    return JsonResponse(safe=False)
+    return JsonResponse(str(cartitems),safe=False)
 
 def check_out(request):
     customer = Customer.objects.get(admin=request.user)
