@@ -23,7 +23,6 @@ urlpatterns = [
     path("admin_update_profile", views.admin_update_profile, name="admin_update_profile"),
     path("add_review", views.add_review, name="add_review"),
     path("add_blog", views.add_blog, name="add_blog"),
-    path("admin_login", views.admin_login, name="admin_login"),
     path("logout_admin", views.logout_admin, name="logout_admin"),
     
 ]

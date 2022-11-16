@@ -360,26 +360,8 @@ def add_blog(request):
   
     return render(request, 'dashboard/add_blog.html',context)
 
-def admin_login(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        user = EmailBackEnd.authenticate(request,username=email,password=password)
-        if user !=None:
-            login(request,user)
-            if user.user_type=="1":
-                return redirect('dashboard:dashboard_home')
-            elif user.user_type=="2":
-                return redirect('store:home')
-            else:
-                messages.error(request,"Invalid Login Details")
-        else:
-            messages.error(request,"Invalid Login Details")
-            return redirect("dashboard:admin_login")
-
-    return render(request, 'dashboard/admin_login.html')
 
 def logout_admin(request):
     logout(request)
     messages.success(request,"You Have Successfully Logout")
-    return redirect("dashboard:admin_login")
+    return redirect('do_login')
