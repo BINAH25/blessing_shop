@@ -140,8 +140,8 @@ def edit_product(request,pk):
         image=request.FILES.get("image")
         category_id=request.POST.get("category")
         slug=request.POST.get("slug")
-        top_deal=request.POST.get("top_deal")
-        flash_sales=request.POST.get("flash_sales")
+        top_deal=request.POST.get("top_deal") or False
+        flash_sales=request.POST.get("flash_sales") or False
         category=Category.objects.get(id=category_id)
         try:
             product.name = name
